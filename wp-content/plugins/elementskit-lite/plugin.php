@@ -284,7 +284,11 @@ class Plugin {
 		 * EmailKit Global Class initialization
 		 *
 		 */
-		if( !did_action('edit_with_emailkit_loaded') && class_exists('\Wpmet\Libs\Emailkit') ) {
+		if (
+			!did_action('edit_with_emailkit_loaded')
+			&& class_exists('\Wpmet\Libs\Emailkit')
+			&& Libs\Framework\Classes\Utils::instance()->get_settings('ekit_user_consent_for_banner', 'yes') == 'yes'
+		) {
 			new \Wpmet\Libs\Emailkit();
 		}
 	}
